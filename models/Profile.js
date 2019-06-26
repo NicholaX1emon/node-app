@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 // Create Schema
-const UserSchema = new Schema({
+const ProfileSchema = new Schema({
   username: {
     type: String,
     required: true
@@ -29,6 +29,6 @@ const UserSchema = new Schema({
   }
 })
 
-const User = mongoose.model('users', UserSchema)
+const Profile = mongoose.model('users', ProfileSchema)
 
-module.exports = User
+module.exports = Profile

@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
+const passport = require('passport')
 const app = express()
 
 
@@ -13,6 +14,10 @@ app.use(bodyParser.json())
 
 // Use Routes
 const userRoute = require('./routes/api/user')
+
+// Initialize & Use Passport for token
+app.use(passport.initialize())
+require('./config/passport')(passport)
 
 // Connect to DB
 mongoose.connect(db)
