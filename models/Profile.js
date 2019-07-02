@@ -4,31 +4,33 @@ const Schema = mongoose.Schema
 
 // Create Schema
 const ProfileSchema = new Schema({
-  username: {
+  type: {
+    type: String,
+  },
+  desc: {
+    type: String,
+  },
+  income: {
     type: String,
     required: true
   },
-  password: {
+  expense: {
     type: String,
     required: true
   },
-  email: {
+  cash: {
     type: String,
     required: true
   },
-  identity: {
+  comment: {
     type: String,
-    required: true
   },
-  avatar: {
-    type: String
-  },
-  last_login: {
+  date: {
     type: Date,
     default: Date.now
   }
 })
 
-const Profile = mongoose.model('users', ProfileSchema)
+const Profile = mongoose.model('profiles', ProfileSchema)
 
 module.exports = Profile

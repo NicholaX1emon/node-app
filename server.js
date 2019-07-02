@@ -4,7 +4,6 @@ const bodyParser = require('body-parser')
 const passport = require('passport')
 const app = express()
 
-
 // DB Config
 const db = require('./config/keys').mongoURL
 
@@ -14,6 +13,7 @@ app.use(bodyParser.json())
 
 // Use Routes
 const userRoute = require('./routes/api/user')
+const profileRoute = require('./routes/api/profile')
 
 // Initialize & Use Passport for token
 app.use(passport.initialize())
@@ -40,3 +40,4 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/user', userRoute) // refers to route function --> router.get() --> /api/user/test
+app.use('/api/profile', profileRoute)

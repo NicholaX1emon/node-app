@@ -2,15 +2,16 @@
 const express = require('express')
 const router = express.Router()
 
-const User = require('../../models/User')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const gravatar = require('gravatar')
-const keys = require('../../config/keys')
 const passport = require('passport')
 
+const User = require('../../models/User')
+const keys = require('../../config/keys')
 
-// $router /api/user/register
+
+// $router POST /api/user/register
 // @desc   注册
 // @access public
 router.post('/register', (req, res) => {
@@ -42,7 +43,7 @@ router.post('/register', (req, res) => {
   })
 })
 
-// $router /api/user/login
+// $router POST /api/user/login
 // @desc   登录
 // @access public
 router.post('/login', (req, res) => {
@@ -56,6 +57,7 @@ router.post('/login', (req, res) => {
       bcrypt.compare(req.body.password, user.password)
             .then(isMatch => {
               if(isMatch) {
+                //配置token中可被解析出的数据
                 const rule = {
                   id: user.id, 
                   name: user.username,
@@ -74,7 +76,7 @@ router.post('/login', (req, res) => {
   })
 })
 
-// $router /api/user/info
+// $router GET /api/user/info
 // @desc   携带token请求私人信息
 // @access private
 router.get('/info', passport.authenticate('jwt', {session: false}), (req, res) => {
